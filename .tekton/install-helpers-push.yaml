@@ -22,9 +22,9 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/bpradipt-tenant/install-helpers:{{revision}}
+    value: quay.io/confidential-devhub/install-helpers:{{revision}}
   - name: dockerfile
-    value: Dockerfile
+    value: Containerfile
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
