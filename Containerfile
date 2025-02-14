@@ -1,5 +1,7 @@
 FROM registry.access.redhat.com/ubi9/ubi:latest
 
+LABEL konflux.additional-tags="latest"
+
 RUN dnf install -y \
     git
 
