@@ -11,6 +11,7 @@ Copy the helper scripts to your local directory and follow the individual
 instructions
 
 ```bash
-podman run -v $HOME:/host quay.io/openshift_sandboxed_containers/install-helpers:0.1.0 cp -a /install-helpers /host/install-helpers
+export VERSION=<SET> #0.1.0, 0.2.0 etc..
+podman run -v $HOME:/host quay.io/openshift_sandboxed_containers/install-helpers:$VERSION cp -a /install-helpers /host/install-helpers
 ```
-
+You can check the available tags directly in the quay repo - `quay.io/openshift_sandboxed_containers/install-helpers`
