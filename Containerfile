@@ -10,19 +10,21 @@ RUN mkdir -p /install-helpers
 
 # OCP install helpers
 # For releases use the tag eg. v0.1.0
-ARG OCP_REF=devel
+ARG OCP_REF=954acc35c32d1b8bb2b138ddf8359bb42609751a
 ENV OCP_REF=${OCP_REF}
 
-# For REF with main or devel use refs/head/$OCP_REF or refs/head/OCP_REF instead of refs/tags/OCP_REF
-
-RUN git clone --single-branch --branch ${OCP_REF} https://github.com/openshift/sandboxed-containers-operator.git && \
-    mv sandboxed-containers-operator/scripts/install-helpers/baremetal-coco /install-helpers/
+RUN git clone --single-branch --branch devel https://github.com/openshift/sandboxed-containers-operator.git && \
+    cd sandboxed-containers-operator && \
+    git checkout ${OCP_REF} && \
+    mv scripts/install-helpers/baremetal-coco /install-helpers/
 
 # Trustee install helpers
-ARG TRUSTEE_REF=main
+ARG TRUSTEE_REF=19aebe234cb2c0ad1829368ad86fde78064c553d
 ENV TRUSTEE_REF=${TRUSTEE_REF}
-RUN git clone --single-branch --branch ${TRUSTEE_REF}  https://github.com/openshift/trustee-operator.git && \
-    mv trustee-operator/scripts/install-helpers /install-helpers/trustee
+RUN git clone --single-branch --branch main  https://github.com/openshift/trustee-operator.git && \
+    cd trustee-operator && \
+    git checkout ${TRUSTEE_REF} && \
+    mv scripts/install-helpers /install-helpers/trustee
 
 # Cleanup
 RUN rm -fr sandboxed-containers-operator trustee-operator && \
